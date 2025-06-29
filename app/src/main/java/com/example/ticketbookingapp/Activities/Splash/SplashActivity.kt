@@ -26,6 +26,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.example.ticketbookingapp.Activities.Dashboard.DashboardActivity
 import com.example.ticketbookingapp.MainActivity
 import com.example.ticketbookingapp.R
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -36,7 +37,7 @@ class SplashActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContent {
             SplashScreen(onGetStartedClick = {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, DashboardActivity::class.java))
             })
         }
     }
