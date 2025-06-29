@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.ticketbookingapp.MainActivity
 import com.example.ticketbookingapp.R
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +44,7 @@ class SplashActivity : AppCompatActivity() {
 
 @Composable
 fun SplashScreen(onGetStartedClick:()->Unit={}) {
+    StatusBarColor()
     Column (modifier = Modifier.fillMaxSize()){
         ConstraintLayout() {
             val(backgroundImg, title, subtitle, startbtn) = createRefs()
@@ -95,5 +98,17 @@ fun SplashScreen(onGetStartedClick:()->Unit={}) {
                 GradientButton(onClick = onGetStartedClick, text = "Get Started", padding = 32)
             }
         }
+    }
+}
+
+@Composable
+fun StatusBarColor() {
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setSystemBarsColor(
+            color = Color.Transparent,
+            darkIcons = false
+        )
     }
 }
