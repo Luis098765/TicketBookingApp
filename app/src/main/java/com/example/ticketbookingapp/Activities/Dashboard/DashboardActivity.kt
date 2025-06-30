@@ -6,11 +6,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -51,6 +53,9 @@ fun MainScreen() {
     var from: String = ""
     var to: String = ""
     var classes: String = ""
+    var adultPassenger: String = ""
+    var childPassenger: String = ""
+
 
     StatusBarColor()
 
@@ -109,11 +114,30 @@ fun MainScreen() {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
+                    YellowTitle("Passengers")
+                    Row (
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        PassengerCounter(
+                            title = "Adult",
+                            modifier = Modifier.weight(1f),
+                            onItemSelected = {adultPassenger = it}
+                        )
+                        Spacer(modifier = Modifier.width(16.dp))
+                        PassengerCounter(
+                            title = "Child",
+                            modifier = Modifier.weight(1f),
+                            onItemSelected = {childPassenger = it}
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
                     val classItems = listOf("Business class", "First class", "Economy class")
                     YellowTitle("Class")
                     DropDownList(
                         items = classItems,
-                        loadingIcon = painterResource(R.drawable.seat_black_ic  ),
+                        loadingIcon = painterResource(R.drawable.seat_black_ic),
                         hint = "Select class",
                         showLocationLoading = showLocationLoading
                     ) { selectedItem->

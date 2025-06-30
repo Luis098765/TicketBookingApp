@@ -13,6 +13,7 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.MenuDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -99,7 +100,12 @@ fun DropDownList(
             )
             DropdownMenu(
                 expanded = expanded,
-                onDismissRequest = {expanded = false}
+                onDismissRequest = {expanded = false},
+                modifier = Modifier
+                    .background(
+                        color = colorResource(R.color.lightPurple),
+                        shape = RoundedCornerShape(4.dp)
+                    )
             ) {
                 items.forEach { item->
                     DropdownMenuItem(
