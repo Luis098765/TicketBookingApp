@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,7 +33,6 @@ import com.example.ticketbookingapp.Activities.Splash.StatusBarColor
 import com.example.ticketbookingapp.Domain.LocationModel
 import com.example.ticketbookingapp.R
 import com.example.ticketbookingapp.ViewModel.MainViewModel
-import kotlinx.coroutines.selects.select
 
 class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,6 +129,16 @@ fun MainScreen() {
                             onItemSelected = {childPassenger = it}
                         )
                     }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Row {
+                        YellowTitle("Departure date", Modifier.weight(1f))
+                        Spacer(modifier = Modifier.width(16.dp))
+                        YellowTitle("Return date", Modifier.weight(1f))
+                    }
+
+                    DatePickerScreen(modifier = Modifier.weight(1f))
 
                     Spacer(modifier = Modifier.height(16.dp))
 
