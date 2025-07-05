@@ -1,5 +1,6 @@
 package com.example.ticketbookingapp.Activities.Dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -25,10 +26,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
+import com.example.ticketbookingapp.Activities.SearchResult.SearchResultActivity
+import com.example.ticketbookingapp.Activities.Splash.GradientButton
 import com.example.ticketbookingapp.Activities.Splash.StatusBarColor
 import com.example.ticketbookingapp.Domain.LocationModel
 import com.example.ticketbookingapp.R
@@ -54,7 +59,7 @@ fun MainScreen() {
     var classes: String = ""
     var adultPassenger: String = ""
     var childPassenger: String = ""
-
+    val context = LocalContext.current
 
     StatusBarColor()
 
@@ -150,8 +155,22 @@ fun MainScreen() {
                         hint = "Select class",
                         showLocationLoading = showLocationLoading
                     ) { selectedItem->
-                        to = selectedItem
+                        classes = selectedItem
                     }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    GradientButton(
+                        onClick = {
+                            val intent = Intent(context, SearchResultActivity::class.java).apply {
+                                putExtra("from", from)
+                                putExtra("to", to)
+                                putExtra("numPassenger", adultPassenger+childPassenger)
+                            }
+                            ContextCompat.startActivity(context, intent, null)
+                        },
+                        text = "Search"
+                    )
                 }
             }
         }
