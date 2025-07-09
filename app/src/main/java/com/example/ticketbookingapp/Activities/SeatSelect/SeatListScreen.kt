@@ -139,11 +139,11 @@ fun SeatListScreen(
 
         BottomSection(
             seatCount = seatCount,
-            selectedSeats = selectedSeatNames.joinToString(","),
+            selectedSeats = selectedSeatNames.joinToString(", "),
             totalPrice = totalPrice,
             onConfirmClick = {
                 if (seatCount > 0) {
-                    flight.passenger = selectedSeatNames.joinToString(",")
+                    flight.passenger = selectedSeatNames.joinToString(", ")
                     flight.price = totalPrice
                     onConfirm(flight)
                 } else {

@@ -31,7 +31,7 @@ fun BottomSection (
     Column (
         modifier = modifier
             .fillMaxWidth()
-            .height(180.dp)
+            .height(160.dp)
             .background(colorResource(R.color.darkPurple))
             .padding(vertical = 16.dp)
     ) {
@@ -69,7 +69,7 @@ fun BottomSection (
                 )
             }
             Text(
-                text = "\$${String.format("%.0f", totalPrice)}",
+                text = "\$${String.format("%.2f", totalPrice)}",
                 color = colorResource(R.color.orange),
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 25.sp
